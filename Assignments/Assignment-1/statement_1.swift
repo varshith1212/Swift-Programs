@@ -10,7 +10,5 @@ func plural(word: String) -> Bool{
     }
 }
 
-var word = readLine()
-
-var ans = plural(word: word!)
+var ans = plural(word: "vars-s")
 print(ans)

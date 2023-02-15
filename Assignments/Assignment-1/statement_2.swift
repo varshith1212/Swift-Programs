@@ -6,16 +6,19 @@ import Foundation
 
 func reverseString(sentence: String) -> String{
     
+    String(sentence.reversed())
+    
+    /*
     var words = sentence.lowercased()
     words = String(words.reversed())
     words = words.capitalized
     
     return words
+    */
 }
 
-var word = readLine()
 
-var ans = reverseString(sentence: word!)
+var ans = reverseString(sentence: "I love India!")
 print(ans)
 
 
