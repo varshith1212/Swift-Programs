@@ -47,4 +47,18 @@ print(greeting(word: "varshith", cards: guests))
 
 print(greeting(word: "Mike", cards: guests))
 
+/*
+
+func greeting(word: String, cards: [String: String?]) -> String {
+    
+    if let name = cards[word] as? String {
+        return "I'm \(name), and I'm from \(String(describing: cards[name]))"
+    } else {
+        return "I'm \(word)"
+    }
+}
+
+var guests = [ "Mike": "Canada", "Jane": "Australia", "varshith": nil]
+print(greeting(word: "varshith", cards: guests))
+*/
 
