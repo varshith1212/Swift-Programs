@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quakes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFw-wl-E40">
+                                <rect key="frame" x="155.5" y="134" width="103.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWr-bb-Wa1">
+                                <rect key="frame" x="192" y="676" width="30" height="30"/>
+                                <state key="normal" title="Get"/>
+                                <connections>
+                                    <action selector="getButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mZS-1Q-QcX"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ylh-9x-Vzf">
+                                <rect key="frame" x="0.0" y="183" width="414" height="468"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="1im-yq-zZI"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hMb-c0-72t"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IFw-wl-E40" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="DgY-mX-lS8"/>
+                            <constraint firstItem="Ylh-9x-Vzf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Gj7-H4-v0u"/>
+                            <constraint firstItem="IFw-wl-E40" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.25" id="S5T-og-hp3"/>
+                            <constraint firstItem="IFw-wl-E40" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sf1-DQ-tjo"/>
+                            <constraint firstItem="Ylh-9x-Vzf" firstAttribute="top" secondItem="IFw-wl-E40" secondAttribute="bottom" constant="28" id="Xx0-su-WOU"/>
+                            <constraint firstItem="qWr-bb-Wa1" firstAttribute="centerX" secondItem="IFw-wl-E40" secondAttribute="centerX" id="ZDv-KZ-9FM"/>
+                            <constraint firstItem="qWr-bb-Wa1" firstAttribute="top" secondItem="Ylh-9x-Vzf" secondAttribute="bottom" constant="25" id="eiK-KL-l8u"/>
+                            <constraint firstItem="Ylh-9x-Vzf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kPR-AT-ikN"/>
+                            <constraint firstItem="Ylh-9x-Vzf" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.522321" id="piH-eH-0vC"/>
+                            <constraint firstItem="Ylh-9x-Vzf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yKY-BF-v63"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="getButton" destination="qWr-bb-Wa1" id="acp-7W-bh5"/>
+                        <outlet property="headerLabel" destination="IFw-wl-E40" id="S0v-J2-qkk"/>
+                        <outlet property="quakesTableView" destination="Ylh-9x-Vzf" id="xLF-Om-7zm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="100.44642857142857"/>
+        </scene>
+    </scenes>
+</document>

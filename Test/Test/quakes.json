@@ -1,0 +1,53 @@
+{
+    "type":"FeatureCollection",
+    "metadata":{
+        "generated":1677835529000,
+        "url":"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson",
+        "title":"USGS Magnitude 2.5+ Earthquakes, Past Hour",
+        "status":200,
+        "api":"1.10.3",
+        "count":1
+    },
+    "features":[
+        {
+            "type":"Feature",
+            "properties": {
+                "mag":4,
+                "place":"61 km SE of King Salmon, Alaska",
+                "time":1677832416548,
+                "updated":1677833694932,
+                "tz":null,
+                "url":"https://earthquake.usgs.gov/earthquakes/eventpage/ak0232uoa4te",
+                "detail":"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak0232uoa4te.geojson",
+                "felt":1,
+                "cdi":2,
+                "mmi":2.578,
+                "alert":null,
+                "status":"reviewed",
+                "tsunami":0,
+                "sig":246,
+                "net":"ak",
+                "code":"0232uoa4te",
+                "ids":",ak0232uoa4te,us7000jgzr,",
+                "sources":",ak,us,",
+                "types":",dyfi,origin,phase-data,shakemap,",
+                "nst":null,
+                "dmin":null,
+                "rms":0.58,
+                "gap":null,
+                "magType":"ml",
+                "type":"earthquake",
+                "title":"M 4.0 - 61 km SE of King Salmon, Alaska"
+            },
+            "geometry": {
+                "type":"Point",
+                "coordinates": [
+                    -156.0142,
+                    58.2496,
+                    142.3
+                ]
+            },
+            "id": "ak0232uoa4te"
+        }
+    ]
+}
