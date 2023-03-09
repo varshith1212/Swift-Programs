@@ -16,14 +16,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quakes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFw-wl-E40">
-                                <rect key="frame" x="155.5" y="134" width="103.5" height="21"/>
+                                <rect key="frame" x="103.5" y="134" width="207" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWr-bb-Wa1">
-                                <rect key="frame" x="192" y="676" width="30" height="30"/>
-                                <state key="normal" title="Get"/>
+                                <rect key="frame" x="163" y="676" width="88" height="30"/>
+                                <state key="normal" title="Get Location"/>
                                 <connections>
                                     <action selector="getButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mZS-1Q-QcX"/>
                                 </connections>
@@ -41,7 +41,7 @@
                         <constraints>
                             <constraint firstItem="IFw-wl-E40" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="DgY-mX-lS8"/>
                             <constraint firstItem="Ylh-9x-Vzf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Gj7-H4-v0u"/>
-                            <constraint firstItem="IFw-wl-E40" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.25" id="S5T-og-hp3"/>
+                            <constraint firstItem="IFw-wl-E40" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="S5T-og-hp3"/>
                             <constraint firstItem="IFw-wl-E40" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sf1-DQ-tjo"/>
                             <constraint firstItem="Ylh-9x-Vzf" firstAttribute="top" secondItem="IFw-wl-E40" secondAttribute="bottom" constant="28" id="Xx0-su-WOU"/>
                             <constraint firstItem="qWr-bb-Wa1" firstAttribute="centerX" secondItem="IFw-wl-E40" secondAttribute="centerX" id="ZDv-KZ-9FM"/>

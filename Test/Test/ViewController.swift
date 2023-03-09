@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
+class ViewController: UIViewController {
     
     
 
@@ -25,11 +26,18 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     }
     
     let activityIndicatorView = UIActivityIndicatorView(style: .large)
+    var locationManager: CLLocationManager?
+    var userLocation: CLLocation? = nil
+    static let geoCoder = CLGeocoder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicatorView.frame = view.frame
         activityIndicatorView.hidesWhenStopped = true
+        
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        getQuakes()
     }
     
     func showActivityIndicator() {
@@ -43,21 +51,22 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         }
     }
 
+    func showAlertWithTitle(_ title: String, message: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: false)
+    }
+    
     @IBAction func getButtonTapped(_ sender: Any) {
-        headerLabel.text = "New Quake"
-        getQuakes()
+        locationManager?.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            showActivityIndicator()
+            locationManager?.requestLocation()
+        }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        earthQuakes.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = earthQuakes[indexPath.row].properties.title
-        return cell
-    }
-    
+
     func getQuakes() {
         
         self.showActivityIndicator()
@@ -85,3 +94,44 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     }
 }
 
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        earthQuakes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.textLabel?.text = earthQuakes[indexPath.row].properties.title
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedEarthQuake = earthQuakes[indexPath.row]
+        showAlertWithTitle("You selected \(selectedEarthQuake.properties.title)")
+    }
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        hideActivityIndicator()
+        if let location = locations.first {
+            updateUserLocation(location)
+        }
+    }
+    
+    func updateUserLocation(_ location: CLLocation) {
+        print("lat: \(location.coordinate.latitude), long: \(location.coordinate.longitude)")
+        userLocation = location
+        ViewController.geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let placemark = placemarks?.first {
+                let locationName = placemark.subLocality ?? placemark.locality ?? placemark.country ?? "unknown"
+                self.showAlertWithTitle("You are at \(locationName)")
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        showAlertWithTitle("\(error.localizedDescription)")
+    }
+}
