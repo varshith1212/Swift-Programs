@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         
         locationManager = CLLocationManager()
         locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
         getQuakes()
     }
     
@@ -107,8 +108,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let referenceLocation = self.userLocation else {
+            showAlertWithTitle("Location not available")
+            return
+        }
         let selectedEarthQuake = earthQuakes[indexPath.row]
-        showAlertWithTitle("You selected \(selectedEarthQuake.properties.title)")
+        let earthQuakeLocation = CLLocation(latitude: selectedEarthQuake.geometry.coordinates[0], longitude: selectedEarthQuake.geometry.coordinates[1])
+        let distanceInMeters = referenceLocation.distance(from: earthQuakeLocation)
+        if distanceInMeters > 0 {
+            let distanceToBeShown = String(format: "%.2f", distanceInMeters)
+            showAlertWithTitle("You are \(distanceToBeShown) meters away")
+        } else {
+            showAlertWithTitle("Distance not available")
+        }
     }
 }
 
@@ -133,5 +145,8 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         showAlertWithTitle("\(error.localizedDescription)")
+        if let locationError = error as? CLError {
+            print(locationError.code)
+        }
     }
 }
