@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
+        getButton.accessibilityIdentifier = "getLocation"
         getQuakes()
     }
     
@@ -84,7 +85,6 @@ class ViewController: UIViewController {
             do {
                 let decoder = JSONDecoder()
                 let quakes = try decoder.decode(Quake.self, from: dataResponse)
-                print(quakes.features.first?.properties.title ?? "")
                 self.earthQuakes = quakes.features
             } catch let parsingError {
                 print(parsingError)
