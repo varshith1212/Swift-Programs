@@ -9,40 +9,27 @@
 import UIKit
 
 protocol PersonDetailsDelegate: class {
-    func sendPersonDetails()
+    func sendPersonDetails(firstnametext: String?, lastnametext: String?)
 }
 
-class EditViewController: UIViewController, PersonDetailsDelegate {
+class EditViewController: UIViewController {
 
-    @IBOutlet weak var FirstName: UITextField!
-    @IBOutlet weak var LastName: UITextField!
-    @IBOutlet weak var Submit: UIButton!
-    
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var save: UIButton!
+        
     weak var sendDelegate: PersonDetailsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
-    @IBAction func onClickSubmit(_ sender: Any) {
-        //let viewController = self.storyboard?.instantiateViewController(identifier: "RegisterViewControllerID") as! RegisterViewController
+    @IBAction func onClickSave(_ sender: Any) {
+        sendDelegate?.sendPersonDetails(firstnametext: firstName.text, lastnametext: lastName.text)
         self.navigationController?.popViewController(animated: true)
     }
     
-    func sendPersonDetails() {
-        
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

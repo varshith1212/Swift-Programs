@@ -10,34 +10,30 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var UserName: UITextField!
-    @IBOutlet weak var PhoneNumber: UITextField!
-    @IBOutlet weak var Register: UIButton!
-    
-    var usernametext: String = ""
-    var phonenumbertext: String = ""
+    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var password: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        usernametext = UserName.text!
-        phonenumbertext = PhoneNumber.text!
     }
     
-
-    @IBAction func onClickRegister(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(identifier: "RegisterViewControllerID") as! RegisterViewController
-        self.navigationController?.pushViewController(viewController, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    */
 
+    @IBAction func onClickLogin(_ sender: Any) {
+        let registerViewController = self.storyboard?.instantiateViewController(identifier: "RegisterViewControllerID") as! RegisterViewController
+        registerViewController.userNameText = userName.text
+        registerViewController.passwordText = password.text
+        self.navigationController?.pushViewController(registerViewController, animated: true)
+    }
+    
 }
