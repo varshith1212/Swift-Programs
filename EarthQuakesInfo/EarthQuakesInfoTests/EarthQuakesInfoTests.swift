@@ -1,15 +1,15 @@
 //
-//  TestTests.swift
-//  TestTests
+//  EarthQuakesInfoTests.swift
+//  EarthQuakesInfoTests
 //
-//  Created by Sai Varshith on 03/03/23.
+//  Created by Sai Varshith on 17/03/23.
 //  Copyright © 2023 Sai Varshith. All rights reserved.
 //
 
 import XCTest
-@testable import Test
+@testable import EarthQuakesInfo
 
-class TestTests: XCTestCase {
+class EarthQuakesInfoTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

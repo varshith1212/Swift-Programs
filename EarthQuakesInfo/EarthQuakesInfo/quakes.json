@@ -12,8 +12,7 @@
         {
             "type":"Feature",
             "properties": {
-                "mag":4,
-                "place":"61 km SE of King Salmon, Alaska",
+                "mag":4,"place":"61 km SE of King Salmon, Alaska",
                 "time":1677832416548,
                 "updated":1677833694932,
                 "tz":null,

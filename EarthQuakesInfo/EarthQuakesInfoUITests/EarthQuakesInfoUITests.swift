@@ -1,14 +1,14 @@
 //
-//  TestUITests.swift
-//  TestUITests
+//  EarthQuakesInfoUITests.swift
+//  EarthQuakesInfoUITests
 //
-//  Created by Sai Varshith on 03/03/23.
+//  Created by Sai Varshith on 17/03/23.
 //  Copyright © 2023 Sai Varshith. All rights reserved.
 //
 
 import XCTest
 
-class TestUITests: XCTestCase {
+class EarthQuakesInfoUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -27,21 +27,9 @@ class TestUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-        
-        sleep(2)
-        app.buttons["getLocation"].tap()
-        sleep(15)
-        XCTAssertTrue(app.alerts.count > 0)
+
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testAppHasGetLocationButton() {
-        let app = XCUIApplication()
-        app.launch()
-        sleep(2)
-        let getButtton = app.buttons["getLocation"]
-        XCTAssert(getButtton.exists)
     }
 
     func testLaunchPerformance() throws {

@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Test
+//  EarthQuakesInfo
 //
-//  Created by Sai Varshith on 03/03/23.
+//  Created by Sai Varshith on 17/03/23.
 //  Copyright © 2023 Sai Varshith. All rights reserved.
 //
 

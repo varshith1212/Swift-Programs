@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  Test
+//  EarthQuakesInfo
 //
-//  Created by Sai Varshith on 03/03/23.
+//  Created by Sai Varshith on 17/03/23.
 //  Copyright © 2023 Sai Varshith. All rights reserved.
 //
 
@@ -10,8 +10,6 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController {
-    
-    
 
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var getButton: UIButton!
