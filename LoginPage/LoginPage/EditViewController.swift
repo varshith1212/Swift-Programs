@@ -55,6 +55,9 @@ class EditViewController: UIViewController {
     
     @objc func addTapped() {
         sendDelegate?.sendPersonDetails(firstnametext: firstName.text, lastnametext: lastName.text, dateofbirthtext: dateOfBirth.text)
+        UserDefaults.standard.set(firstName.text, forKey: "firstnametextstore")
+        UserDefaults.standard.set(lastName.text, forKey: "lastnametextstore")
+        UserDefaults.standard.set(dateOfBirth.text, forKey: "dateofbirthtextstore")
         self.navigationController?.popViewController(animated: true)
     }
     

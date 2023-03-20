@@ -26,13 +26,11 @@ class LoginViewController: UIViewController {
             openRegisterViewScreen()
         }
         // Do any additional setup after loading the view.
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,9 +56,7 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.set(true, forKey: "IsAppLoggedIn")
                 self.openRegisterViewScreen()
             }
-            
         }
-        
     }
     
     func openRegisterViewScreen() {

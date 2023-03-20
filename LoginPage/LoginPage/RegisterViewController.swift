@@ -21,10 +21,7 @@ class RegisterViewController: UIViewController, PersonDetailsDelegate {
     var firstNameText: String?
     var lastNameText: String?
     
-    var firstnametextstore: String?
-    var lastnametextstore: String?
-    var dateofbirthtextstore: String?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,12 +31,10 @@ class RegisterViewController: UIViewController, PersonDetailsDelegate {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(addTapped))
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        firstName.text = firstnametextstore
-        lastName.text = lastnametextstore
-        dateOfBirth.text = dateofbirthtextstore
+        firstName.text = UserDefaults.standard.string(forKey: "firstnametextstore")
+        lastName.text = UserDefaults.standard.string(forKey: "lastnametextstore")
+        dateOfBirth.text = UserDefaults.standard.string(forKey: "dateofbirthtextstore")
+        
     }
     
     @objc func addTapped() {
@@ -55,9 +50,10 @@ class RegisterViewController: UIViewController, PersonDetailsDelegate {
     }
     
     func sendPersonDetails(firstnametext: String?, lastnametext: String?, dateofbirthtext: String?) {
-        firstnametextstore = firstnametext
-        lastnametextstore = lastnametext
-        dateofbirthtextstore = dateofbirthtext
+        firstName.text = firstnametext
+        lastName.text = lastnametext
+        dateOfBirth.text = dateofbirthtext
+        
     }
     
 }

@@ -48,7 +48,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.countryImage?.image = UIImage(named: cell.country.text!)
         return cell
     }
-    
-
 }
-
