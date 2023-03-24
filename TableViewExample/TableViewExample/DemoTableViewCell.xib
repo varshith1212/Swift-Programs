@@ -35,7 +35,7 @@
                 <outlet property="country" destination="rUg-Uq-1Io" id="6lZ-Mg-qWL"/>
                 <outlet property="countryImage" destination="2k3-zO-tPf" id="qzb-rp-StL"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="117.1875"/>
+            <point key="canvasLocation" x="-54" y="-17"/>
         </tableViewCell>
     </objects>
 </document>
