@@ -12,10 +12,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 
     @IBOutlet weak var podcastTableView: UITableView!
-    
-    var podcasts: Podcasts.Feed! = nil
        
-    var names:[String] = []
+    var results: [[String: Any]] = []
  
     
     override func viewDidLoad() {
@@ -34,51 +32,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
             }
             
-                do {
-                    let json = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-                   // print("Received Response:", json as Any)
-
-                    let artistsList  = ((json as! NSDictionary).value(forKey: "feed") as! NSDictionary).value(forKey: "results") as! NSArray
-
-                    for arist in artistsList {
+            do {
+                let json = try JSONSerialization.jsonObject(with: dataResponse, options: [])
+                
+                let artistsList  = ((json as? NSDictionary).value(forKey: "feed") as? NSDictionary).value(forKey: "results") as? NSArray
+                
+                self.results = artistsList as! [[String : Any]]
                         
-                        if let artistInfo = arist as? NSDictionary {
-                            if let artistName = artistInfo.value(forKey: "artistName") as? String {
-                                print("Artist Name :", artistName)
-                                self.names.append(artistName)
-                            }
-                        }
-                    }
-                    DispatchQueue.main.async {
-                        self.podcastTableView.reloadData()
-                    }
-
-                } catch {
-                    print(error)
+                DispatchQueue.main.async {
+                    self.podcastTableView.reloadData()
                 }
-            
-//            do {
-//                let decoder = JSONDecoder()
-//                let podcast = try decoder.decode(Podcasts.Feed.self, from: dataResponse)
-//                print("Podcasr", podcast.results)
-//                self.podcasts = podcast
-//            } catch let parsingError {
-//                print(parsingError)
-//            }
+            } catch {
+                print(error)
+            }
         }
-        
         task.resume()
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        names.count
+        results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = names[indexPath.row]//podcasts.results[indexPath.row].artistName
+        cell.textLabel?.text = (results[indexPath.row] as? [String:Any])?["artistName"] as? String
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let podcastViewController = self.storyboard?.instantiateViewController(identifier: "podcastViewControllerID") as? PodcastViewController {
+            //data pass
+            podcastViewController.artistDetails = results[indexPath.row]
+            self.navigationController?.pushViewController(podcastViewController, animated: true)
+        }
+    }
 }
-
