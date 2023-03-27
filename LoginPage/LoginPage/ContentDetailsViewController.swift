@@ -1,28 +1,28 @@
 //
-//  PodcastViewController.swift
-//  URLSessionExample
+//  ContentDetailsViewController.swift
+//  LoginPage
 //
-//  Created by Sai Varshith on 24/03/23.
+//  Created by Sai Varshith on 27/03/23.
 //  Copyright © 2023 Sai Varshith. All rights reserved.
 //
 
 import UIKit
 
-class PodcastViewController: UIViewController {
+class ContentDetailsViewController: UIViewController {
 
-    @IBOutlet weak var artistName: UILabel!
-    @IBOutlet weak var podcastName: UILabel!
     @IBOutlet weak var urlImage: UIImageView!
+    @IBOutlet weak var artistName: UILabel!
+    @IBOutlet weak var contentName: UILabel!
     @IBOutlet weak var genre: UILabel!
+    
     var artistDetails: Results!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         artistName.text = artistDetails.artistName
-        podcastName.text = artistDetails.name
+        contentName.text = artistDetails.name
         genre.text = artistDetails.genres[0].name
         
         guard let url = URL(string: artistDetails.artworkUrl100) else {return}
@@ -37,5 +37,5 @@ class PodcastViewController: UIViewController {
         
     }
     
-   
+
 }

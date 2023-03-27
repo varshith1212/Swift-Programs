@@ -23,7 +23,8 @@ class LoginViewController: UIViewController {
         let value: Bool = UserDefaults.standard.bool(forKey: "IsAppLoggedIn")
         
         if value == true {
-            openRegisterViewScreen()
+            //openRegisterViewScreen()
+            openContentViewScreen()
         }
         // Do any additional setup after loading the view.
     }
@@ -54,7 +55,7 @@ class LoginViewController: UIViewController {
         }else {
             DispatchQueue.main.async {
                 UserDefaults.standard.set(true, forKey: "IsAppLoggedIn")
-                self.openRegisterViewScreen()
+                self.openContentViewScreen()
             }
         }
     }
@@ -67,6 +68,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func openContentViewScreen() {
+        if let contentViewController = self.storyboard?.instantiateViewController(identifier: "contentViewControllerID") as? ContentViewController {
+            
+            self.navigationController?.pushViewController(contentViewController, animated: true)
+        }
+    }
     
     func showAlertWithTitle(_ title: String, message: String? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

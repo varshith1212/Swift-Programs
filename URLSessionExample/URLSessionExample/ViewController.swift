@@ -13,8 +13,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var podcastTableView: UITableView!
        
-    var results: [[String: Any]] = []
+    var results: [Results] = []
  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func getPodcasts() {
         
-        guard let url = URL(string: "https://rss.applemarketingtools.com/api/v2/us/podcasts/top/50/podcasts.json") else { return }
+        guard let url = URL(string: "https://rss.applemarketingtools.com/api/v2/in/podcasts/top/50/podcasts.json") else { return }
         
         let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
             guard let dataResponse = data, error == nil else {
@@ -32,18 +33,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
             }
             
-            do {
-                let json = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-                
-                let artistsList  = ((json as? NSDictionary).value(forKey: "feed") as? NSDictionary).value(forKey: "results") as? NSArray
-                
-                self.results = artistsList as! [[String : Any]]
-                        
-                DispatchQueue.main.async {
-                    self.podcastTableView.reloadData()
-                }
-            } catch {
-                print(error)
+            let decoder = try! JSONDecoder().decode(Podcasts.self, from: dataResponse)
+            // remove and add
+            self.results = decoder.feed.results
+        
+            DispatchQueue.main.async {
+                self.podcastTableView.reloadData()
             }
         }
         task.resume()
@@ -56,7 +51,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = (results[indexPath.row] as? [String:Any])?["artistName"] as? String
+        cell.textLabel?.text = results[indexPath.row].artistName
         return cell
     }
     

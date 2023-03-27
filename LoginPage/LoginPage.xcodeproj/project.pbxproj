@@ -17,6 +17,9 @@
 		F100F05629C07C690075D803 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F100F05529C07C690075D803 /* LoginViewController.swift */; };
 		F100F05829C07CA90075D803 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F100F05729C07CA90075D803 /* RegisterViewController.swift */; };
 		F100F05A29C07D470075D803 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F100F05929C07D470075D803 /* EditViewController.swift */; };
+		F1428A7E29D16EFB00D88194 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428A7D29D16EFB00D88194 /* ContentViewController.swift */; };
+		F1428A8029D16F3700D88194 /* ContentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428A7F29D16F3700D88194 /* ContentDetailsViewController.swift */; };
+		F1428A8229D1708E00D88194 /* Podcasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428A8129D1708E00D88194 /* Podcasts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		F100F05529C07C690075D803 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F100F05729C07CA90075D803 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F100F05929C07D470075D803 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		F1428A7D29D16EFB00D88194 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		F1428A7F29D16F3700D88194 /* ContentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailsViewController.swift; sourceTree = "<group>"; };
+		F1428A8129D1708E00D88194 /* Podcasts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Podcasts.swift; path = ../../URLSessionExample/URLSessionExample/Podcasts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,9 @@
 				F100F05529C07C690075D803 /* LoginViewController.swift */,
 				F100F05729C07CA90075D803 /* RegisterViewController.swift */,
 				F100F05929C07D470075D803 /* EditViewController.swift */,
+				F1428A7D29D16EFB00D88194 /* ContentViewController.swift */,
+				F1428A7F29D16F3700D88194 /* ContentDetailsViewController.swift */,
+				F1428A8129D1708E00D88194 /* Podcasts.swift */,
 				F100F02429BF2C500075D803 /* Assets.xcassets */,
 				F100F02629BF2C500075D803 /* LaunchScreen.storyboard */,
 				F100F02929BF2C500075D803 /* Info.plist */,
@@ -267,8 +276,11 @@
 			files = (
 				F100F05A29C07D470075D803 /* EditViewController.swift in Sources */,
 				F100F05629C07C690075D803 /* LoginViewController.swift in Sources */,
+				F1428A8229D1708E00D88194 /* Podcasts.swift in Sources */,
 				F100F01C29BF2C400075D803 /* AppDelegate.swift in Sources */,
 				F100F01E29BF2C400075D803 /* SceneDelegate.swift in Sources */,
+				F1428A7E29D16EFB00D88194 /* ContentViewController.swift in Sources */,
+				F1428A8029D16F3700D88194 /* ContentDetailsViewController.swift in Sources */,
 				F100F05829C07CA90075D803 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

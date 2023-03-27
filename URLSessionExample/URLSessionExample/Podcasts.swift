@@ -9,15 +9,25 @@
 import Foundation
 
 struct Podcasts: Codable {
-    
     var feed: Feed
+}
+
+struct Feed: Codable {
+    var results: [Results]
     
-    struct Feed: Codable {
-        var results: [Results]
-        
-        struct Results: Codable {
-            var artistName : String
-            var name: String
-        }
-    }
+    
+}
+
+struct Results: Codable {
+    var artistName : String
+    var name: String
+    var artworkUrl100:String
+    var genres:[Genres]
+    
+    
+}
+
+
+struct Genres:Codable {
+    var name:String
 }
