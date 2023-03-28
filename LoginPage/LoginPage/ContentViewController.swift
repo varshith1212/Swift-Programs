@@ -11,50 +11,78 @@ import UIKit
 class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var contentTableView: UITableView!
-    @IBOutlet weak var displayName: UILabel!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    
+    let activityIndicatorView = UIActivityIndicatorView(style: .large)
+    
+    var country: String = "in"
+    var type: String = "podcasts/top/50/podcasts"
     
     var results: [Results] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicatorView.frame = view.frame
+        activityIndicatorView.hidesWhenStopped = true
+               
 
         // Do any additional setup after loading the view.
         //getPodcasts()
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select Country", style: .plain, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Country", style: .plain, target: self, action: #selector(addTapped))
+        getContent(country: country, type: type)
         
+        navigationItem.title = "Podcasts"
     }
     
     @objc func addTapped() {
+        
+        
         let actionSheet = UIAlertController(title: "Select Country", message: "Select Country to differ content", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "India", style: .default, handler: { (action)->Void in
-            self.getPodcasts(country: "in")}))
+            self.country = "in"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "USA", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "us")}))
+            self.country = "us"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "UK", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "gb")}))
+            self.country = "gb"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "Switzerland", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "ch")}))
+            self.country = "ch"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "Russia", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "ru")}))
+            self.country = "ru"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "Japan", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "jp")}))
+            self.country = "jp"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "Italy", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "it")}))
+            self.country = "it"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "Australia", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "au")}))
+            self.country = "au"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "Brazil", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "br")}))
+            self.country = "br"
+            self.getContent(country: self.country, type: self.type)}))
         actionSheet.addAction(UIAlertAction(title: "France", style: .default, handler: { (action)->Void in
-        self.getPodcasts(country: "fr")}))
-        actionSheet.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.country =  "fr"
+            self.getContent(country: self.country, type: self.type)}))
+        actionSheet.addAction(UIAlertAction(title: "cancel", style: .destructive , handler: nil))
         self.present(actionSheet, animated: true)
+        
+        hideMenu()
+        showActivityIndicator()
     }
     
-    func getPodcasts(country: String) {
+    func getContent(country: String, type: String) {
         
-        displayName.text = "Podcast"
-        guard let url = URL(string: "https://rss.applemarketingtools.com/api/v2/" + country + "/podcasts/top/50/podcasts.json") else { return }
+        hideActivityIndicator()
+        guard let url = URL(string: "https://rss.applemarketingtools.com/api/v2/" + country + "/" + type + ".json") else { return }
         
         let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
             guard let dataResponse = data, error == nil else {
@@ -88,6 +116,73 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             //data pass
             contentDetailsViewController.artistDetails = results[indexPath.row]
             self.navigationController?.pushViewController(contentDetailsViewController, animated: true)
+        }
+    }
+
+    var menuOut = false
+    
+    @IBAction func onMenuTapped(_ sender: Any) {
+        if menuOut == false{
+            leadingConstraint.constant = 250
+            trailingConstraint.constant = -250
+            menuOut = true
+        }else{
+            hideMenu()
+        }
+    }
+    
+    func hideMenu() {
+        leadingConstraint.constant = 0
+        trailingConstraint.constant = 0
+        menuOut = false
+    }
+    
+    @IBAction func onProfileTapped(_ sender: Any) {
+        if let registerViewController = self.storyboard?.instantiateViewController(identifier: "RegisterViewControllerID") as? RegisterViewController {
+            registerViewController.userNameText = UserDefaults.standard.string(forKey: "usernametextstore")
+            
+            self.navigationController?.pushViewController(registerViewController, animated: true)
+        }
+        hideMenu()
+    }
+    
+    @IBAction func onPodcastTapped(_ sender: Any) {
+        showActivityIndicator()
+        self.type = "podcasts/top/50/podcasts"
+        getContent(country: country, type: type)
+        hideMenu()
+        navigationItem.title = "Podcasts"
+    }
+    
+    @IBAction func onAppsTapped(_ sender: Any) {
+        showActivityIndicator()
+        self.type = "apps/top-free/50/apps"
+        getContent(country: country, type: type)
+        hideMenu()
+        navigationItem.title = "Apps"
+    }
+    
+    @IBAction func onBooksTapped(_ sender: Any) {
+        showActivityIndicator()
+        self.type = "books/top-free/50/books"
+        getContent(country: country, type: type)
+        hideMenu()
+        navigationItem.title = "Books"
+    }
+    
+    @IBAction func onLogOuttapped(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "IsAppLoggedIn")
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showActivityIndicator() {
+        self.view.addSubview(activityIndicatorView)
+        self.activityIndicatorView.startAnimating()
+    }
+    
+    func hideActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicatorView.stopAnimating()
         }
     }
 

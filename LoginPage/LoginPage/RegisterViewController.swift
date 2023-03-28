@@ -27,19 +27,12 @@ class RegisterViewController: UIViewController, PersonDetailsDelegate {
 
         // Do any additional setup after loading the view.
         userName.text = userNameText
-        self.navigationItem.setHidesBackButton(true, animated: true)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(addTapped))
         
         firstName.text = UserDefaults.standard.string(forKey: "firstnametextstore")
         lastName.text = UserDefaults.standard.string(forKey: "lastnametextstore")
         dateOfBirth.text = UserDefaults.standard.string(forKey: "dateofbirthtextstore")
         
-    }
-    
-    @objc func addTapped() {
-        UserDefaults.standard.set(false, forKey: "IsAppLoggedIn")
-        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func onClickEdit(_ sender: Any) {

@@ -23,7 +23,11 @@ class ContentDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
         artistName.text = artistDetails.artistName
         contentName.text = artistDetails.name
-        genre.text = artistDetails.genres[0].name
+        if artistDetails.genres.isEmpty {
+            genre.text = "-"
+        } else {
+            genre.text = artistDetails.genres[0].name
+        }
         
         guard let url = URL(string: artistDetails.artworkUrl100) else {return}
         let dataTask = URLSession.shared.dataTask(with: url){ (data, _, _) in

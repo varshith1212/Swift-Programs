@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     var masterUserName: String = "Admin"
     var masterPassword: String = "admin123"
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,18 +61,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func openRegisterViewScreen() {
-        if let registerViewController = self.storyboard?.instantiateViewController(identifier: "RegisterViewControllerID") as? RegisterViewController {
-            registerViewController.userNameText = masterUserName
-            
-            self.navigationController?.pushViewController(registerViewController, animated: true)
-        }
-    }
-    
     func openContentViewScreen() {
         if let contentViewController = self.storyboard?.instantiateViewController(identifier: "contentViewControllerID") as? ContentViewController {
-            
             self.navigationController?.pushViewController(contentViewController, animated: true)
+            UserDefaults.standard.set(masterUserName, forKey: "usernametextstore")
         }
     }
     

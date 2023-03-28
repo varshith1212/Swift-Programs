@@ -15,6 +15,8 @@
 		F1428A5A29D15F1300D88194 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1428A5829D15F1300D88194 /* LaunchScreen.storyboard */; };
 		F1428A6529D15F1300D88194 /* FullStackCourseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428A6429D15F1300D88194 /* FullStackCourseTests.swift */; };
 		F1428A7029D15F1300D88194 /* FullStackCourseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428A6F29D15F1300D88194 /* FullStackCourseUITests.swift */; };
+		F1428A8629D1AEEB00D88194 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428A8529D1AEEB00D88194 /* HamburgerViewController.swift */; };
+		F1428A8829D1B3FE00D88194 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1428A8729D1B3FE00D88194 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		F1428A6B29D15F1300D88194 /* FullStackCourseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FullStackCourseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1428A6F29D15F1300D88194 /* FullStackCourseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullStackCourseUITests.swift; sourceTree = "<group>"; };
 		F1428A7129D15F1300D88194 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1428A8529D1AEEB00D88194 /* HamburgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
+		F1428A8729D1B3FE00D88194 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +105,9 @@
 			children = (
 				F1428A4D29D15F0600D88194 /* AppDelegate.swift */,
 				F1428A4F29D15F0700D88194 /* SceneDelegate.swift */,
+				F1428A8529D1AEEB00D88194 /* HamburgerViewController.swift */,
 				F1428A5129D15F0700D88194 /* ViewController.swift */,
+				F1428A8729D1B3FE00D88194 /* ProfileViewController.swift */,
 				F1428A5329D15F0700D88194 /* Main.storyboard */,
 				F1428A5629D15F1300D88194 /* Assets.xcassets */,
 				F1428A5829D15F1300D88194 /* LaunchScreen.storyboard */,
@@ -259,7 +265,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1428A8629D1AEEB00D88194 /* HamburgerViewController.swift in Sources */,
 				F1428A5229D15F0700D88194 /* ViewController.swift in Sources */,
+				F1428A8829D1B3FE00D88194 /* ProfileViewController.swift in Sources */,
 				F1428A4E29D15F0600D88194 /* AppDelegate.swift in Sources */,
 				F1428A5029D15F0700D88194 /* SceneDelegate.swift in Sources */,
 			);
