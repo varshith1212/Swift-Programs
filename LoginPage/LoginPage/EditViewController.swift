@@ -50,8 +50,6 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
         // Do any additional setup after loading the view.
         imagePicker.delegate = self
-        profileImage.contentMode = .scaleAspectFill
-
         navigationItem.title = "Edit Profile"
 
         self.dateOfBirth.setDatePickerAsInputViewFor(target: self, selector: #selector(dateSelected))
@@ -64,6 +62,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.height / 2
+        profileImage.contentMode = .scaleAspectFill
         profileImage.backgroundColor = .gray
         
     }
