@@ -23,6 +23,9 @@ class ContentDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
         artistName.text = artistDetails.artistName
         contentName.text = artistDetails.name
+        
+        navigationItem.title = artistDetails.name
+        
         if artistDetails.genres.isEmpty {
             genre.text = "-"
         } else {

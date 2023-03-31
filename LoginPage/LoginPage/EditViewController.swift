@@ -34,23 +34,38 @@ protocol PersonDetailsDelegate: class {
     func sendPersonDetails(firstnametext: String?, lastnametext: String?, dateofbirthtext: String?)
 }
 
-class EditViewController: UIViewController {
+class EditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var dateOfBirth: UITextField!
-        
+    @IBOutlet weak var profileImage: UIImageView!
+    
     weak var sendDelegate: PersonDetailsDelegate?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        
+        imagePicker.delegate = self
+        profileImage.contentMode = .scaleAspectFill
+
+        navigationItem.title = "Edit Profile"
+
         self.dateOfBirth.setDatePickerAsInputViewFor(target: self, selector: #selector(dateSelected))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(addTapped))
+        
+        if let imageData = UserDefaults.standard.object(forKey: "userPicture") as? Data, let image = UIImage(data: imageData){
+            profileImage.image = image
+        }
+        
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
+        profileImage.backgroundColor = .gray
+        
     }
     
     @objc func addTapped() {
@@ -70,4 +85,30 @@ class EditViewController: UIViewController {
         self.dateOfBirth.resignFirstResponder()
     }
     
+    var imagePicker = UIImagePickerController()
+    
+    @IBAction func onClickUpload(_ sender: Any) {
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImage.contentMode = .scaleAspectFit
+            profileImage.image = pickedImage
+        }
+        
+        if let pngRepresentation = profileImage.image?.pngData() {
+            UserDefaults.standard.set(pngRepresentation, forKey: "userPicture")
+        }
+//        guard let data = UIImage("")?.jpegData(compressionQuality: 0.5) else {return}
+//        let encoded = try! PropertyListEncoder().encode(data)
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }

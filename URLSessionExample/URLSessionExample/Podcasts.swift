@@ -14,8 +14,6 @@ struct Podcasts: Codable {
 
 struct Feed: Codable {
     var results: [Results]
-    
-    
 }
 
 struct Results: Codable {
@@ -23,10 +21,7 @@ struct Results: Codable {
     var name: String
     var artworkUrl100:String
     var genres:[Genres]
-    
-    
 }
-
 
 struct Genres:Codable {
     var name:String

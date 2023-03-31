@@ -6,6 +6,7 @@
 //  Copyright © 2023 Sai Varshith. All rights reserved.
 //
 
+
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -20,9 +21,8 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let value: Bool = UserDefaults.standard.bool(forKey: "IsAppLoggedIn")
-        
+      
         if value == true {
             //openRegisterViewScreen()
             openContentViewScreen()
@@ -32,6 +32,8 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        userName.text = masterUserName
+        password.text = masterPassword
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     

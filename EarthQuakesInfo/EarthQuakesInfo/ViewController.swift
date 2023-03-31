@@ -87,6 +87,7 @@ class ViewController: UIViewController {
             } catch let parsingError {
                 print(parsingError)
             }
+            
         }
         
         task.resume()
